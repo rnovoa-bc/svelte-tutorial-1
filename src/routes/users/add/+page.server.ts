@@ -19,14 +19,14 @@ export const actions: Actions = {
           uid: formData.get('uid'), password: formData.get('password')
         });
       if (result.insertedId) {
-        return redirect(303, '/users');
+        return { success: true };
       } else {
-        return fail(500, { message: 'Failed to save user' });
+        return { success: false };
       }
 
     } catch (err) {
       console.error('Database error:', err);
-      return fail(500, { message: 'An error occurred while saving the user' });
+      return { success: false };
     }
   }
 }

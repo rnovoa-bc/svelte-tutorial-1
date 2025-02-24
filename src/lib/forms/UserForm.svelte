@@ -34,7 +34,8 @@
       validationErrors['password'] = 'not_valid password';
     }
     if (JSON.stringify(validationErrors) === JSON.stringify({})) {
-      document.forms.namedItem('userForm')?.submit();
+      const result = document.forms.namedItem('userForm')?.submit();
+      console.log(result);
     }
       
   }
