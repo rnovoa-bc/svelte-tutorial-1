@@ -2,7 +2,6 @@
 
   let { user, action, errors } = $props();
   let validationErrors = $state<{name?: string; email?:string; uid?: string; password?: string;}>({});
-  console.log(user)
   /**
    * Form data validation before submit
    */
@@ -34,8 +33,7 @@
       validationErrors['password'] = 'not_valid password';
     }
     if (JSON.stringify(validationErrors) === JSON.stringify({})) {
-      const result = document.forms.namedItem('userForm')?.submit();
-      console.log(result);
+      document.forms.namedItem('userForm')?.submit();
     }
       
   }
@@ -79,6 +77,7 @@
     </div>
     <div>
       <button type="button" onclick={validateForm} >Save</button>
+      <a href="/users">Cancel</a>
     </div>  
   </form>
 </div>

@@ -6,7 +6,6 @@ import { ObjectId } from "mongodb";
 export const actions: Actions = {
   default: async ({ request }) => {
     const formData = await request.formData();
-    console.log("edit", formData);
     /**
      * * Here add some extra validation if needed
      * TODO encrypt the password
@@ -20,7 +19,6 @@ export const actions: Actions = {
           $set:  { name: formData.get('name'), email: formData.get('email'),
                    uid: formData.get('uid'), password: formData.get('password') }
         });
-      console.log(result)
      
 
     } catch (err) {
@@ -28,10 +26,9 @@ export const actions: Actions = {
       return fail(500, { message: 'An error occurred while saving the user' });
     }
     if (result.modifiedCount === 1) {
-      console.log("edit ok")
-      throw redirect(303, '/users');
+      redirect(303, '/users');
     } else {
-      return fail(500, { message: 'Failed to save user' });
+      return fail(416, { message: 'Failed to save user' });
     }
   }
 }
